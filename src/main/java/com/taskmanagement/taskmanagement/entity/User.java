@@ -1,20 +1,29 @@
 package com.taskmanagement.taskmanagement.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "email")
     private String email;
+    @Column(name = "role")
     private String role;
+    @OneToMany(mappedBy = "user",
+                fetch = FetchType.LAZY,
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                        CascadeType.DETACH, CascadeType.REFRESH})
     private List<Task> tasks;
 
     public User() {
@@ -64,6 +73,8 @@ public class User {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -73,6 +84,7 @@ public class User {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 
     public void add(Task task){
 
