@@ -95,6 +95,5 @@ public class User {
         tasks.add(task);
 
         task.setUser(this);
-
     }
 }
