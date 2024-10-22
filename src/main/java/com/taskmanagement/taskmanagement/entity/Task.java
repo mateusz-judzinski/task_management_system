@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "tasks")
 public class Task {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "title")
@@ -75,7 +77,6 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", priority=" + priority +
-                ", user=" + user +
                 '}';
     }
 }
