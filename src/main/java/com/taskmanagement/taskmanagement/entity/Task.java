@@ -18,7 +18,7 @@ public class Task {
     private int priority;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Task() {
