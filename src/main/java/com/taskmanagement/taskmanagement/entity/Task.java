@@ -1,12 +1,23 @@
 package com.taskmanagement.taskmanagement.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tasks")
 public class Task {
 
+    @Column(name = "id")
     private int id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "priority")
     private int priority;
-    private int userId;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name = "user_id")
+    private User user;
 
     public Task() {
     }
@@ -49,12 +60,12 @@ public class Task {
         this.priority = priority;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+         this.user = user;
     }
 
     @Override
@@ -64,7 +75,7 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", priority=" + priority +
-                ", userId=" + userId +
+                ", user=" + user +
                 '}';
     }
 }

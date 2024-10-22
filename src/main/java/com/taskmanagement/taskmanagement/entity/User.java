@@ -64,16 +64,6 @@ public class User {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
-
-    public void add(Task tempTask){
-
-        if(tasks == null){
-            tasks = new ArrayList<>();
-        }
-
-
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -82,5 +72,16 @@ public class User {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    public void add(Task task){
+
+        if(tasks == null){
+            tasks = new ArrayList<>();
+        }
+
+        tasks.add(task);
+
+        task.setUser(this);
     }
 }
