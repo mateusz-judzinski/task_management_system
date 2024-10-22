@@ -22,8 +22,7 @@ public class User {
     private String role;
     @OneToMany(mappedBy = "user",
                 fetch = FetchType.LAZY,
-                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                        CascadeType.DETACH, CascadeType.REFRESH})
+                cascade = CascadeType.ALL)
     private List<Task> tasks;
 
     public User() {
