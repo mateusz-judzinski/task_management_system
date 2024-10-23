@@ -2,7 +2,9 @@ package com.taskmanagement.taskmanagement.service;
 
 import com.taskmanagement.taskmanagement.entity.User;
 import com.taskmanagement.taskmanagement.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +13,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -34,4 +38,26 @@ public class UserServiceImpl implements UserService{
 
         return userRepository.findAll();
     }
+
+    @Transactional
+    @Override
+    public void register(User user) {
+
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public boolean login(String userName, String password) {
+
+        User user = userRepository.findByUsername(userName);
+        if(user != null){
+
+            return passwordEncoder.matches(password, user.getPassword());
+        }
+        return false;
+    }
+
 }
