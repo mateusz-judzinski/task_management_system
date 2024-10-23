@@ -9,4 +9,6 @@ public interface UserService {
     void registerUser(User user);
     User findUserByUsername(String username);
     List<User> getAllUsers();
-}
+    void register(User user);
+    boolean login (String userName, String password);
+    }
