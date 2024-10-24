@@ -22,7 +22,6 @@ public class UserController {
 
     @GetMapping("/register")
     public String showRegisterForm(Model model){
-
         model.addAttribute("user", new User());
         return "register";
     }
@@ -38,25 +37,29 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String showLoginForm(Model model){
 
         return "login";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String loginUser(@RequestParam String username,
                             @RequestParam String password,
                             Model model,
-                            RedirectAttributes redirectAttributes){
+                            RedirectAttributes redirectAttributes) {
         User user = userService.findUserByUsername(username);
-
-        if(user != null && userService.login(username, password)){
-            redirectAttributes.addFlashAttribute("success", "Logged in successfully");
-            return "redirect:/";
+        if (user != null) {
+            if (userService.login(username, password)) {
+                redirectAttributes.addFlashAttribute("success", "Logged in successfully");
+                return "redirect:/";
+            } else {
+                model.addAttribute("error", "Wrong username or password");
+            }
+        } else {
+            model.addAttribute("error", "User not found");
         }
-
-        model.addAttribute("error", "Wrong username or password");
         return "login";
     }
+
 }
