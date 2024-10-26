@@ -43,7 +43,7 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/process-login")
     public String loginUser(@RequestParam String username,
                             @RequestParam String password,
                             Model model,
@@ -62,4 +62,9 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/dashboard")
+    public String showDashboardPage(Model model){
+
+        return "dashboard";
+    }
 }
