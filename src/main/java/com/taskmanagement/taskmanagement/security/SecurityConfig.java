@@ -19,19 +19,37 @@ public class SecurityConfig {
     }
 
     @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        jdbcUserDetailsManager.setUsersByUsernameQuery(
+                "select username, password, true as enabled from users where username=?"
+        );
+
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                "select username, role from users where username=?"
+        );
+
+        return jdbcUserDetailsManager;
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers("/").hasRole("USER_ROLE")
-                        .requestMatchers("/admin_panel").hasRole("ADMIN_ROLE")
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/register").permitAll()
+                        .requestMatchers("/dashboard/**").hasAnyRole("ADMIN_ROLE", "USER_ROLE")
+                        .requestMatchers("/admin_panel/**").hasRole("ADMIN_ROLE")
                         .anyRequest().authenticated()
         )
 
                 .formLogin(form ->
                         form
                                 .loginPage("/login")
-                                .loginProcessingUrl("/login")
+                                .loginProcessingUrl("/process-login")
+                                .defaultSuccessUrl("/dashboard", true)
                                 .permitAll()
                 )
                 .logout(logout -> logout.permitAll()

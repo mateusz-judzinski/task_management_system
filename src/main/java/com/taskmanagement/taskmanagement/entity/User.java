@@ -1,6 +1,5 @@
 package com.taskmanagement.taskmanagement.entity;
 
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
