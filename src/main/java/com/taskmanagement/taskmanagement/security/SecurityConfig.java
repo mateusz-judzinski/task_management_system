@@ -40,8 +40,9 @@ public class SecurityConfig {
                 configurer
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/register").permitAll()
-                        .requestMatchers("/dashboard/**").hasAnyRole("ADMIN_ROLE", "USER_ROLE")
-                        .requestMatchers("/admin_panel/**").hasRole("ADMIN_ROLE")
+                        .requestMatchers("/process-registration").permitAll()
+                        .requestMatchers("/dashboard/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/admin_panel/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
         )
 

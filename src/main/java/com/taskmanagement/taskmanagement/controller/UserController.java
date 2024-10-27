@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,41 +27,38 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/register")
-    public String registerUser(User user, Model model){
+    @PostMapping("/process-registration")
+    public String registerUser(@ModelAttribute User user, RedirectAttributes redirectAttributes){
 
         if(userService.findUserByUsername(user.getUsername()) != null) {
-            model.addAttribute("error", "User already exists");
-            return "register";
+            redirectAttributes.addFlashAttribute("error", "User already exists");
+            return "redirect:/register";
         }
         userService.register(user);
         return "redirect:/login";
     }
 
     @GetMapping("/login")
-    public String showLoginForm(Model model){
-
+    public String showLoginForm(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Wrong username or password");
+        }
         return "login";
     }
+
 
     @PostMapping("/process-login")
     public String loginUser(@RequestParam String username,
                             @RequestParam String password,
-                            Model model,
                             RedirectAttributes redirectAttributes) {
-        User user = userService.findUserByUsername(username);
-        if (user != null) {
-            if (userService.login(username, password)) {
-                redirectAttributes.addFlashAttribute("success", "Logged in successfully");
-                return "redirect:/";
-            } else {
-                model.addAttribute("error", "Wrong username or password");
-            }
+        if (userService.login(username, password)) {
+            redirectAttributes.addFlashAttribute("success", "Logged in successfully");
+            return "redirect:/dashboard";
         } else {
-            model.addAttribute("error", "User not found");
+            return "login";
+            }
         }
-        return "login";
-    }
+
 
     @GetMapping("/dashboard")
     public String showDashboardPage(Model model){
