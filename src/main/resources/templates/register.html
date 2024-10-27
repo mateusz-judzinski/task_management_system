@@ -5,17 +5,22 @@
 </head>
 <body>
 <h1>Create your account</h1>
-<form action="/register" method="post">
+<form action="/process-registration" th:action="@{/process-registration}" method="post" >
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="username" required>
     <br>
+
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password" required>
     <br>
-    <label for="confirmPassword">Confirm password:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
     <br>
+
     <button type="submit">Register</button>
 </form>
+
+<p th:if="${error}" th:text="${error}" style="color: red;">User already exists</p>
 </body>
 </html>

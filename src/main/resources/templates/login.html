@@ -14,7 +14,7 @@
     <br />
     <button type="submit">Log in</button>
 </form>
-<p th:if="${param.error}">Wrong username or password</p>
-<p th:if="${param.logout}">Logged out successfully</p>
+
+<p th:if="${error}" th:text="${error}" style="color: red;">Wrong username or password</p>
 </body>
 </html>
