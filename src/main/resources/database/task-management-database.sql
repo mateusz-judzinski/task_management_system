@@ -15,7 +15,7 @@ CREATE TABLE users (
   `username` varchar(45) DEFAULT NULL,
   `password` char(68) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
-  `role` varchar(45) DEFAULT 'USER_ROLE',
+  `role` varchar(45) DEFAULT 'ROLE_USER',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -23,7 +23,7 @@ CREATE TABLE users (
 
 INSERT INTO `users` (username, password, email, role) 
 VALUES 
-('matt', '{bcrypt}$2a$10$BpWABldCaTIE3FcpqCzVxOAk.915XZnT485DXQfbgiOzI61HVZMi6', 'matt@gmail.com', 'USER_ROLE');
+('matt', '$2a$10$BpWABldCaTIE3FcpqCzVxOAk.915XZnT485DXQfbgiOzI61HVZMi6', 'matt@gmail.com', 'ROLE_USER');
 
 CREATE TABLE tasks (
   `id` int NOT NULL AUTO_INCREMENT,
