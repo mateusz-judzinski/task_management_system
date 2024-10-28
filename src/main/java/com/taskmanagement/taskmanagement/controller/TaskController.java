@@ -59,12 +59,12 @@ public class TaskController {
     @GetMapping("/edit/{taskId}")
     public String showEditTaskForm(@PathVariable("taskId") int taskId, Model model, Principal principal){
 
-        Task tempTask = taskService.findTaskById(taskId);
+        Task task = taskService.findTaskById(taskId);
 
         if(taskService.isTaskOwner(taskId, principal)){
 
-            model.addAttribute("task", tempTask);
-            return "task_form";
+            model.addAttribute("task", task);
+            return "task-form";
         }
         return "redirect:/access-denied";
 
