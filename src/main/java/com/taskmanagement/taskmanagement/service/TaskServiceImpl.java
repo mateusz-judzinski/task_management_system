@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -61,4 +62,26 @@ public class TaskServiceImpl implements TaskService{
 
         taskRepository.deleteById(taskId);
     }
+
+    @Override
+    public Task findTaskById(int taskId) {
+
+        return taskRepository.findById(taskId).orElseThrow(() ->
+                new RuntimeException("Task with id: " + taskId + " not found"));
+    }
+
+    @Override
+    public boolean isTaskOwner(int taskId, Principal principal) {
+
+        Task tempTask = taskRepository.findById(taskId).orElseThrow(() ->
+                new RuntimeException("Task with id: " + taskId + " not found"));
+
+        String username = principal.getName();
+        if(tempTask.getUser().getUsername().equals(username)){
+            return true;
+        }
+        return false;
+    }
+
+
 }

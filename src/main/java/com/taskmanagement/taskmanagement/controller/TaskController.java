@@ -6,10 +6,7 @@ import com.taskmanagement.taskmanagement.service.TaskService;
 import com.taskmanagement.taskmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -59,4 +56,42 @@ public class TaskController {
     }
 
 
+    @GetMapping("/edit/{taskId}")
+    public String showEditTaskForm(@PathVariable("taskId") int taskId, Model model, Principal principal){
+
+        Task tempTask = taskService.findTaskById(taskId);
+
+        if(taskService.isTaskOwner(taskId, principal)){
+
+            model.addAttribute("task", tempTask);
+            return "task_form";
+        }
+        return "redirect:/access-denied";
+
+    }
+
+    @PostMapping("/update/{taskId}")
+    public String updateTask(@PathVariable("taskId") int taskId, @ModelAttribute("task")
+                                Task task, Principal principal){
+
+        if(taskService.isTaskOwner(taskId, principal)){
+
+            taskService.updateTask(taskId, task);
+            return "redirect:/tasks";
+
+        }
+        return "redirect:/access-denied";
+
+    }
+
+    @GetMapping("/delete/{taskId}")
+    public String deleteTask(@PathVariable("taskId") int taskId, Principal principal){
+
+        if(taskService.isTaskOwner(taskId, principal)){
+
+            taskService.deleteTask(taskId);
+            return "redirect:/tasks";
+        }
+        return "redirect:/access-denied";
+    }
 }
