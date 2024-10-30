@@ -38,6 +38,7 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/register").permitAll()
                         .requestMatchers("/process-registration").permitAll()
@@ -51,7 +52,7 @@ public class SecurityConfig {
                         form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/process-login")
-                                .defaultSuccessUrl("/dashboard", true)
+                                .defaultSuccessUrl("/tasks", true)
                                 .permitAll()
                 )
                 .logout(logout -> logout.permitAll()
