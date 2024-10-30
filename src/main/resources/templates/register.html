@@ -5,22 +5,26 @@
 </head>
 <body>
 <h1>Create your account</h1>
-<form action="/process-registration" th:action="@{/process-registration}" method="post" >
+<form action="/process-registration" th:action="@{/process-registration}" method="post" th:object="${user}">
+
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+    <input type="text" id="username" name="username" th:field="*{username}" required>
     <br>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red;"></p>
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="password" th:field="*{password}" required>
     <br>
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red;"></p>
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email" th:field="*{email}" required>
     <br>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red;"></p>
 
     <button type="submit">Register</button>
 </form>
 
-<p th:if="${error}" th:text="${error}" style="color: red;">User already exists</p>
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
 </body>
 </html>

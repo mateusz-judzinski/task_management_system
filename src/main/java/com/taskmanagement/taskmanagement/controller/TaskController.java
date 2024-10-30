@@ -4,8 +4,10 @@ import com.taskmanagement.taskmanagement.entity.Task;
 import com.taskmanagement.taskmanagement.entity.User;
 import com.taskmanagement.taskmanagement.service.TaskService;
 import com.taskmanagement.taskmanagement.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -44,7 +46,13 @@ public class TaskController {
     }
 
     @PostMapping()
-    public String saveNewTask(@ModelAttribute("task") Task task, Principal principal){
+    public String saveNewTask(@ModelAttribute("task") @Valid Task task,
+                              BindingResult bindingResult,
+                              Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+            return "task-form";
+        }
 
         String tempUsername = principal.getName();
         User tempUser = userService.findUserByUsername(tempUsername);
@@ -71,8 +79,14 @@ public class TaskController {
     }
 
     @PostMapping("/update/{taskId}")
-    public String updateTask(@PathVariable("taskId") int taskId, @ModelAttribute("task")
-                                Task task, Principal principal){
+    public String updateTask(@PathVariable("taskId") int taskId,
+                             @ModelAttribute("task") @Valid Task task,
+                             BindingResult bindingResult,
+                             Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+            return "task-form";
+        }
 
         if(taskService.isTaskOwner(taskId, principal)){
 

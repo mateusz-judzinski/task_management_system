@@ -2,8 +2,10 @@ package com.taskmanagement.taskmanagement.controller;
 
 import com.taskmanagement.taskmanagement.entity.User;
 import com.taskmanagement.taskmanagement.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,15 +30,21 @@ public class UserController {
     }
 
     @PostMapping("/process-registration")
-    public String registerUser(@ModelAttribute User user, RedirectAttributes redirectAttributes){
+    public String registerUser(@Valid @ModelAttribute User user, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
 
         if(userService.findUserByUsername(user.getUsername()) != null) {
             redirectAttributes.addFlashAttribute("error", "User already exists");
             return "redirect:/register";
         }
+
         userService.register(user);
         return "redirect:/login";
     }
+
 
     @GetMapping("/login")
     public String showLoginForm(@RequestParam(value = "error", required = false) String error, Model model) {
