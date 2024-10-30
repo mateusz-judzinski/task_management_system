@@ -1,6 +1,7 @@
 package com.taskmanagement.taskmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "tasks")
@@ -10,10 +11,19 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @NotNull(message = "Task title is required")
+    @NotBlank(message = "Task title cannot be blank")
+    @Size(min = 3, max = 50, message = "Task title should be between 3 and 50 characters")
     @Column(name = "title")
     private String title;
+    @NotNull(message = "Task description is required")
+    @NotBlank(message = "Task description cannot be blank")
+    @Size(max = 200, message = "Description should be less than 200 characters")
     @Column(name = "description")
     private String description;
+    @NotNull(message = "Priority is required")
+    @Min(1)
+    @Max(5)
     @Column(name = "priority")
     private int priority;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,

@@ -1,6 +1,7 @@
 package com.taskmanagement.taskmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +13,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "username")
+    @NotNull(message = "Username is required")
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 3, max = 20, message = "Username should be between 3 and 20 characters")
     private String username;
+    @NotNull(message = "Password is required")
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 8, message = "Password should be at least 8 characters")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$",
+            message = "Password must contain at least one digit, one lowercase letter, one uppercase letter, and be at least 8 characters long")
     @Column(name = "password")
     private String password;
+    @Email(message = "Email should be valid")
+    @NotNull(message = "Email is required")
+    @NotBlank(message = "Email cannot be blank")
     @Column(name = "email")
     private String email;
     @Column(name = "role")
