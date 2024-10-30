@@ -1,4 +1,4 @@
-package com.taskmanagement.taskmanagement.controller;
+package com.taskmanagement.taskmanagement.exception;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;

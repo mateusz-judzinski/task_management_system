@@ -23,6 +23,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    public String showStartPage(){
+        return "home-page";
+    }
+
     @GetMapping("/register")
     public String showRegisterForm(Model model){
         model.addAttribute("user", new User());

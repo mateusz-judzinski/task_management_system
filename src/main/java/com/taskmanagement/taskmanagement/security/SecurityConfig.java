@@ -38,12 +38,12 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/register").permitAll()
                         .requestMatchers("/process-registration").permitAll()
-                        .requestMatchers("/dashboard/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/tasks/**").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers("/admin_panel/**").hasRole("ADMIN")
+                        .requestMatchers("/admin-panel/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
         )
 
@@ -51,7 +51,7 @@ public class SecurityConfig {
                         form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/process-login")
-                                .defaultSuccessUrl("/dashboard", true)
+                                .defaultSuccessUrl("/tasks", true)
                                 .permitAll()
                 )
                 .logout(logout -> logout.permitAll()
