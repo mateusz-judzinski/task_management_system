@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Access Denied</title>
+    <title>Error Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="alert alert-danger text-center p-4">
-                <h3 class="alert-heading">Access Denied</h3>
-                <p>You have no permission to enter this page.</p>
+                <h3 class="alert-heading">Error Occurred</h3>
+                <p th:text="${errorMessage}">An error has occurred. Please try again later.</p>
                 <hr>
                 <a href="/" class="btn btn-primary">Go to Home</a>
             </div>

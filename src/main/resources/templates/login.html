@@ -2,19 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h2>Sign in</h2>
-<form action="/process-login" th:action="@{/process-login}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required />
-    <br />
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required />
-    <br />
-    <button type="submit">Log in</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Sign in</h3>
+                    <form action="/process-login" th:action="@{/process-login}" method="post">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                    </form>
+                    <p th:if="${error}" th:text="${error}" class="text-danger text-center mt-3">Wrong username or password</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p th:if="${error}" th:text="${error}" style="color: red;">Wrong username or password</p>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
