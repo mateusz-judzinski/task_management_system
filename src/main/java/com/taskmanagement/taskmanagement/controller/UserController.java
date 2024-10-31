@@ -66,7 +66,7 @@ public class UserController {
                             RedirectAttributes redirectAttributes) {
         if (userService.login(username, password)) {
             redirectAttributes.addFlashAttribute("success", "Logged in successfully");
-            return "redirect:/dashboard";
+            return "redirect:/tasks";
         } else {
             return "login";
             }

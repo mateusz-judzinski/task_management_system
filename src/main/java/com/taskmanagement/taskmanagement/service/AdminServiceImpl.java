@@ -1,9 +1,7 @@
 package com.taskmanagement.taskmanagement.service;
 
-import com.taskmanagement.taskmanagement.entity.Admin;
 import com.taskmanagement.taskmanagement.entity.Task;
 import com.taskmanagement.taskmanagement.entity.User;
-import com.taskmanagement.taskmanagement.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,26 +10,52 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService{
 
-    private final AdminRepository adminRepository;
+    private final UserService userService;
+    private final TaskService taskService;
 
     @Autowired
-    public AdminServiceImpl(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
+    public AdminServiceImpl(UserService userService, TaskService taskService) {
+        this.userService = userService;
+        this.taskService = taskService;
     }
 
-    public void addAdmin(Admin admin) {
-        adminRepository.save(admin);
+    @Override
+    public void addUser(User user) {
+        userService.register(user);
     }
 
-    public void deleteAdminById(int id) {
-        adminRepository.deleteById(id);
+    @Override
+    public void updateUser(User user) {
+        userService.updateUser(user);
     }
 
-    public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
+    @Override
+    public void deleteUser(int userId) {
+        userService.deleteUserById(userId);
     }
 
-    public Admin findAdminByUsername(String username) {
-        return adminRepository.findByUsername(username);
+    @Override
+    public void addTask(Task task, int userId) {
+        taskService.createTask(task, userId);
+    }
+
+    @Override
+    public void updateTask(int taskId, Task updatedTask) {
+        taskService.updateTask(taskId, updatedTask);
+    }
+
+    @Override
+    public void deleteTask(int taskId) {
+        taskService.deleteTask(taskId);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @Override
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 }
