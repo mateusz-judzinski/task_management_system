@@ -8,6 +8,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `tasks`;
+DROP TABLE IF EXISTS `admins`;
 
 
 CREATE TABLE users (
@@ -39,9 +40,8 @@ CREATE TABLE tasks (
   ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
+INSERT INTO tasks (title, description, priority, user_id)
+VALUES ('workout', '30 push-ups and 20 squats and 15 burpees', 3, 1);
 
-
-INSERT INTO tasks (title, description, priority)
-VALUES ('workout', '30 push-ups and 20 squats and 15 burpees', 3);
 
 SET FOREIGN_KEY_CHECKS = 1;

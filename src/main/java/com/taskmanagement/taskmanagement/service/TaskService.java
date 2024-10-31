@@ -13,4 +13,5 @@ public interface TaskService {
     void deleteTask(int taskId);
     Task findTaskById(int taskId);
     boolean isTaskOwner(int taskId, Principal principal);
+    List<Task> getAllTasks();
     }

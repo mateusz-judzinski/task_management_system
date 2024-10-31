@@ -34,6 +34,14 @@
     <div class="text-center mt-4">
         <a href="/tasks/new" th:href="@{/tasks/new}" class="btn btn-primary">Add New Task</a>
     </div>
+
+    <div class="text-center mt-3">
+        <form action="#" th:action="@{/logout}" method="post" style="display: inline;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
