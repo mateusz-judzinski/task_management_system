@@ -20,7 +20,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             GrantedAuthority grantedAuthority = authentication.getAuthorities().iterator().next();
 
             if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                redirectUrl = "/admin-panel";
+                redirectUrl = "/admin";
             } else if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
                 redirectUrl = "/tasks";
             }
