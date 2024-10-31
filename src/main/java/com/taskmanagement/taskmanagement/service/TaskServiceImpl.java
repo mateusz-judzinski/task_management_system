@@ -71,6 +71,12 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
+    public List<Task> getAllTasks() {
+
+        return taskRepository.findAll();
+    }
+
+    @Override
     public boolean isTaskOwner(int taskId, Principal principal) {
 
         Task tempTask = taskRepository.findById(taskId).orElseThrow(() ->

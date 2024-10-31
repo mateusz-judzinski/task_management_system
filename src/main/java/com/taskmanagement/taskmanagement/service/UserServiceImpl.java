@@ -22,12 +22,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void registerUser(User user) {
-
-        userRepository.save(user);
-    }
-
-    @Override
     public User findUserByUsername(String username) {
 
         return userRepository.findByUsername(username);
@@ -37,6 +31,16 @@ public class UserServiceImpl implements UserService{
     public List<User> getAllUsers() {
 
         return userRepository.findAll();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        userRepository.deleteById(id);
     }
 
     @Transactional
