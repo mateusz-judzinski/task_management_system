@@ -35,23 +35,23 @@ public class TaskController {
 
         model.addAttribute("tasks", tasks);
 
-        return "tasks";
+        return "user/tasks";
     }
 
     @GetMapping("/new")
     public String showNewTaskForm(Model model){
         model.addAttribute("task", new Task());
 
-        return "task-form";
+        return "user/task-form";
     }
 
-    @PostMapping()
+    @PostMapping
     public String saveNewTask(@ModelAttribute("task") @Valid Task task,
                               BindingResult bindingResult,
                               Principal principal) {
 
         if (bindingResult.hasErrors()) {
-            return "task-form";
+            return "user/task-form";
         }
 
         String tempUsername = principal.getName();
@@ -72,7 +72,7 @@ public class TaskController {
         if(taskService.isTaskOwner(taskId, principal)){
 
             model.addAttribute("task", task);
-            return "task-form";
+            return "user/task-form";
         }
         return "redirect:/access-denied";
 
@@ -85,7 +85,7 @@ public class TaskController {
                              Principal principal) {
 
         if (bindingResult.hasErrors()) {
-            return "task-form";
+            return "user/task-form";
         }
 
         if(taskService.isTaskOwner(taskId, principal)){

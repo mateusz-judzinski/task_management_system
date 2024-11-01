@@ -11,6 +11,6 @@ public class ErrorController {
     @GetMapping("/access-denied")
     public String showDashboardPage(){
 
-        return "access-denied";
+        return "/exception/access-denied";
     }
 }

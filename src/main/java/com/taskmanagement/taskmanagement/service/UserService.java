@@ -12,4 +12,5 @@ public interface UserService {
     void deleteUserById(int id);
     void register(User user);
     boolean login (String userName, String password);
+    User findUserById(int id);
     }

@@ -58,4 +58,14 @@ public class AdminServiceImpl implements AdminService{
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
+
+    public Task findTaskById(int id) {
+        return taskService.findTaskById(id);
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userService.findUserById(id);
+    }
+
 }
