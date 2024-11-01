@@ -29,20 +29,20 @@ public class UserController {
 
     @GetMapping("/")
     public String showStartPage(){
-        return "home-page";
+        return "user/home-page";
     }
 
     @GetMapping("/register")
     public String showRegisterForm(Model model){
         model.addAttribute("user", new User());
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/process-registration")
     public String registerUser(@Valid @ModelAttribute User user, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         if (bindingResult.hasErrors()) {
-            return "register";
+            return "user/register";
         }
 
         if(userService.findUserByUsername(user.getUsername()) != null) {
@@ -60,7 +60,7 @@ public class UserController {
         if (error != null) {
             model.addAttribute("error", "Wrong username or password");
         }
-        return "login";
+        return "user/login";
     }
 
 
@@ -72,7 +72,7 @@ public class UserController {
             redirectAttributes.addFlashAttribute("success", "Logged in successfully");
             return "redirect:/tasks";
         } else {
-            return "login";
+            return "user/login";
             }
         }
 

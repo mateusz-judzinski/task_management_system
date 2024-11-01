@@ -65,4 +65,11 @@ public class UserServiceImpl implements UserService{
         return false;
     }
 
+    @Override
+    public User findUserById(int id) {
+
+         return userRepository.findById(id).orElseThrow(() ->
+                 new RuntimeException("User with id: " + id + " not found"));
+    }
+
 }

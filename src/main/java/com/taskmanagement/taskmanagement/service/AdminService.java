@@ -22,4 +22,7 @@ public interface AdminService {
     List<User> getAllUsers();
 
     List<Task> getAllTasks();
+
+    Task findTaskById(int id);
+    User findUserById(int id);
 }
