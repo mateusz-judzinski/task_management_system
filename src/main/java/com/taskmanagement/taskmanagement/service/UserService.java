@@ -8,7 +8,7 @@ public interface UserService {
 
     User findUserByUsername(String username);
     List<User> getAllUsers();
-    void updateUser(User user);
+    void updateUser(User user, boolean toHashFlag);
     void deleteUserById(int id);
     void register(User user);
     boolean login (String userName, String password);

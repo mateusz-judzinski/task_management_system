@@ -25,8 +25,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void updateUser(User user) {
-        userService.updateUser(user);
+    public void updateUser(User user, boolean toHashFlag) {
+        userService.updateUser(user, toHashFlag);
     }
 
     @Override

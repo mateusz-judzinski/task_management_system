@@ -9,7 +9,7 @@ public interface AdminService {
 
     public void addUser(User user);
 
-    public void updateUser(User user);
+    public void updateUser(User user, boolean toHashFlag);
 
     public void deleteUser(int userId);
 

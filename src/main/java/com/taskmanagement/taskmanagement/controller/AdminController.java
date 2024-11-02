@@ -40,7 +40,7 @@ public class AdminController {
     public String addNewUser(Model model){
         model.addAttribute("user", new User());
 
-        return "admin/admin-user-form";
+        return "admin/admin-new-user-form";
     }
 
     @PostMapping("/user")
@@ -48,7 +48,7 @@ public class AdminController {
                               BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "admin/admin-user-form";
+            return "admin/admin-new-user-form";
         }
 
         adminService.addUser(user);
@@ -58,7 +58,7 @@ public class AdminController {
     @GetMapping("/user/edit/{id}")
     public String showEditUserForm(@PathVariable("id") int userId, Model model) {
         model.addAttribute("user", adminService.findUserById(userId));
-        return "admin/admin-user-form";
+        return "admin/admin-edit-user-form";
     }
 
     @PostMapping("/user/update")
@@ -66,14 +66,17 @@ public class AdminController {
                              BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "admin/admin-user-form";
+            return "admin/admin-edit-user-form";
         }
 
-        if(user.getNewPassword() != null && !user.getNewPassword().isBlank()){
+        boolean toHashFlag = false;
+
+        if(!user.getNewPassword().isBlank() || !user.getNewPassword().isEmpty()){
+            toHashFlag = true;
             user.setPassword(user.getNewPassword());
         }
 
-        adminService.updateUser(user);
+        adminService.updateUser(user, toHashFlag);
         return "redirect:/admin/users";
     }
 
