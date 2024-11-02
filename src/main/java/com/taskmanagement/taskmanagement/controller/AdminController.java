@@ -44,7 +44,7 @@ public class AdminController {
     }
 
     @PostMapping("/user")
-    public String saveNewUser(@ModelAttribute("user") @Valid User user,
+    public String saveNewUser(@ModelAttribute("user") User user,
                               BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
@@ -62,7 +62,7 @@ public class AdminController {
     }
 
     @PostMapping("/user/update")
-    public String updateUser(@ModelAttribute("user") @Valid User user,
+    public String updateUser(@ModelAttribute("user") User user,
                              BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){

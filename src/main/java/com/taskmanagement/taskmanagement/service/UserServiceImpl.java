@@ -35,6 +35,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser(User user) {
+
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
         userRepository.save(user);
     }
 
