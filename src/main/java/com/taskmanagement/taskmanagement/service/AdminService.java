@@ -15,7 +15,7 @@ public interface AdminService {
 
     public void addTask(Task task, int userId);
 
-    public void updateTask(int taskId, Task updatedTask);
+    public void updateTask(int taskId, Task updatedTask, int userId);
 
     void deleteTask(int taskId);
 

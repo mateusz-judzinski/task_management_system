@@ -69,6 +69,10 @@ public class AdminController {
             return "admin/admin-user-form";
         }
 
+        if(user.getNewPassword() != null && !user.getNewPassword().isBlank()){
+            user.setPassword(user.getNewPassword());
+        }
+
         adminService.updateUser(user);
         return "redirect:/admin/users";
     }
@@ -114,13 +118,14 @@ public class AdminController {
 
     @PostMapping("/task/update")
     public String updateTask(@ModelAttribute("task") @Valid Task task,
+                             @RequestParam("userId") int userId,
                              BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "admin/admin-task-form";
         }
 
-        adminService.updateTask(task.getId(), task);
+        adminService.updateTask(task.getId(), task, userId);
         return "redirect:/admin/tasks";
     }
 

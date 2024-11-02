@@ -40,8 +40,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void updateTask(int taskId, Task updatedTask) {
-        taskService.updateTask(taskId, updatedTask);
+    public void updateTask(int taskId, Task updatedTask, int userId) {
+        taskService.updateTask(taskId, updatedTask, userId);
     }
 
     @Override
