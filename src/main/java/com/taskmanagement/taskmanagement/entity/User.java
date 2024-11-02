@@ -21,7 +21,7 @@ public class User {
     private String username;
     @Transient
     private String newPassword;
-    @NotNull(message = "Password is required", groups = Default.class)
+    @NotNull(message = "Password is required")
     @NotBlank(message = "Password cannot be blank")
     @Size(min = 8, message = "Password should be at least 8 characters")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$",

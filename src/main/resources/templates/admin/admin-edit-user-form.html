@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>User Form</title>
+  <title>Edit User Form</title>
 </head>
 <body>
-<h2 th:text="${user.id == 0 ? 'Add New User' : 'Edit User'}"></h2>
-<form th:action="@{${user.id == 0 ? '/admin/user' : '/admin/user/update'}}"
-      th:object="${user}" method="post">
+<h2>Edit User</h2>
+<form action="/admin/user/update" th:action="@{/admin/user/update}" th:object="${user}" method="post">
   <input type="hidden" id="id" th:field="*{id}" required/>
+  <input type="hidden" id="password" th:field="*{password}" required/>
   <div>
     <label for="username">Name:</label>
     <input type="text" id="username" th:field="*{username}" required/>
   </div>
-  <div th:if="${user.id != 0}">
+  <div>
     <label for="newPassword">Password:</label>
     <input type="password" id="newPassword" th:field="*{newPassword}" placeholder="Leave blank to keep current password"/>
-  </div>
-  <div th:if="${user.id == 0}">
-    <label for="password">Password:</label>
-    <input type="password" id="password" th:field="*{password}" required/>
   </div>
   <div>
     <label for="email">Email:</label>
