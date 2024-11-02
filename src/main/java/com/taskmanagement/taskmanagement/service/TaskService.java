@@ -10,6 +10,7 @@ public interface TaskService {
     void createTask(Task task, int userId);
     List<Task> getTasksForUser(int userId);
     void updateTask(int taskId, Task updatedTask);
+    void updateTask(int taskId, Task updatedTask, int userId);
     void deleteTask(int taskId);
     Task findTaskById(int taskId);
     boolean isTaskOwner(int taskId, Principal principal);

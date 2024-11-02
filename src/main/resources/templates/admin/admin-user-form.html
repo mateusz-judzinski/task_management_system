@@ -4,15 +4,21 @@
   <title>User Form</title>
 </head>
 <body>
-<h2 th:text="${#strings.isEmpty(user.id) ? 'Add New User' : 'Edit User'}"></h2>
-<form th:action="@{/admin/user}" th:object="${user}" method="post">
+<h2 th:text="${user.id == 0 ? 'Add New User' : 'Edit User'}"></h2>
+<form th:action="@{${user.id == 0 ? '/admin/user' : '/admin/user/update'}}"
+      th:object="${user}" method="post">
+  <input type="hidden" id="id" th:field="*{id}" required/>
   <div>
     <label for="username">Name:</label>
     <input type="text" id="username" th:field="*{username}" required/>
   </div>
-  <div>
+  <div th:if="${user.id != 0}">
+    <label for="newPassword">Password:</label>
+    <input type="password" id="newPassword" th:field="*{newPassword}" placeholder="Leave blank to keep current password"/>
+  </div>
+  <div th:if="${user.id == 0}">
     <label for="password">Password:</label>
-    <input type="text" id="password" th:field="*{password}" required/>
+    <input type="password" id="password" th:field="*{password}" required/>
   </div>
   <div>
     <label for="email">Email:</label>
@@ -22,7 +28,7 @@
     <label for="role">Role:</label>
     <input type="text" id="role" th:field="*{role}" required/>
   </div>
-  <button type="submit">Save</button>
+  <button type="submit" th:text="${user.id == 0 ? 'Add' : 'Update'}"></button>
 </form>
 </body>
 </html>

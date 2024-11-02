@@ -1,7 +1,9 @@
 package com.taskmanagement.taskmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.*;
+import jakarta.validation.groups.Default;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,9 @@ public class User {
     @NotBlank(message = "Username cannot be blank")
     @Size(min = 3, max = 20, message = "Username should be between 3 and 20 characters")
     private String username;
-    @NotNull(message = "Password is required")
+    @Transient
+    private String newPassword;
+    @NotNull(message = "Password is required", groups = Default.class)
     @NotBlank(message = "Password cannot be blank")
     @Size(min = 8, message = "Password should be at least 8 characters")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$",
@@ -59,6 +63,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public String getPassword() {

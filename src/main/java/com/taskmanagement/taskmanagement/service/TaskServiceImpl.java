@@ -58,6 +58,25 @@ public class TaskServiceImpl implements TaskService{
 
     @Transactional
     @Override
+    public void updateTask(int taskId, Task updatedTask, int userId) {
+
+        Task tempTask = taskRepository.findById(taskId).orElseThrow(() ->
+                new RuntimeException("Task with id: " + taskId + " not found"));
+
+        tempTask.setTitle(updatedTask.getTitle());
+        tempTask.setDescription(updatedTask.getDescription());
+        tempTask.setPriority(updatedTask.getPriority());
+
+        User tempUser = userRepository.findById(userId).orElseThrow(() ->
+                new RuntimeException("User with id: " + userId + " not found"));
+        tempTask.setUser(tempUser);
+
+        taskRepository.save(tempTask);
+
+    }
+
+    @Transactional
+    @Override
     public void deleteTask(int taskId) {
 
         taskRepository.deleteById(taskId);

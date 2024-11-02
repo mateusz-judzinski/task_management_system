@@ -4,8 +4,11 @@
     <title>Task Form</title>
 </head>
 <body>
-<h2 th:text="${#strings.isEmpty(task.id) ? 'Add New Task' : 'Edit Task'}"></h2>
-<form th:action="@{/admin/task}" th:object="${task}" method="post">
+<h2 th:text="${task.id == 0 ? 'Add New Task' : 'Edit Task'}"></h2>
+
+<form th:action="@{${task.id == 0 ? '/admin/task' : '/admin/task/update'}}"
+      th:object="${task}" method="post">
+    <input type="hidden" id="id" th:field="*{id}" required/>
     <div>
         <label for="title">Title:</label>
         <input type="text" id="title" th:field="*{title}" required/>
@@ -20,9 +23,9 @@
     </div>
     <div>
         <label for="userId">User ID:</label>
-        <input type="number" id="userId" th:field="*{user.id}" required/>
+        <input type="number" id="userId" name="userId" th:value="${task.user != null ? task.user.id : ''}" required/>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" th:text="${task.id == 0 ? 'Add' : 'Update'}"></button>
 </form>
 </body>
 </html>
