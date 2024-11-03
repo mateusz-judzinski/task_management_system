@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -97,38 +98,59 @@ public class AdminController {
     public String addNewTask(Model model){
         model.addAttribute("task", new Task());
 
+        List<User> userList = adminService.getAllUsers();
+        List<String> userNameList = new ArrayList<>();
+
+        for(User user : userList){
+            if(user.getRole().equals("ROLE_USER")) {
+                userNameList.add(user.getUsername());
+            }
+        }
+
+        model.addAttribute("users", userNameList);
         return "admin/admin-task-form";
     }
 
     @PostMapping("/task")
     public String saveNewTask(@ModelAttribute("task") @Valid Task task,
                               BindingResult bindingResult,
-                              @RequestParam("userId") int userId){
+                              @RequestParam("username") String username){
 
         if(bindingResult.hasErrors()){
             return "admin/admin-task-form";
         }
 
-        adminService.addTask(task, userId);
+        adminService.addTask(task, username);
         return "redirect:/admin/tasks";
     }
 
     @GetMapping("/task/edit/{id}")
     public String showEditTaskForm(@PathVariable("id") int taskId, Model model) {
         model.addAttribute("task", adminService.findTaskById(taskId));
+
+        List<User> userList = adminService.getAllUsers();
+        List<String> userNameList = new ArrayList<>();
+
+        for(User user : userList){
+            if(user.getRole().equals("ROLE_USER")) {
+                userNameList.add(user.getUsername());
+            }
+        }
+
+        model.addAttribute("users", userNameList);
         return "admin/admin-task-form";
     }
 
     @PostMapping("/task/update")
     public String updateTask(@ModelAttribute("task") @Valid Task task,
                              BindingResult bindingResult,
-                             @RequestParam("userId") int userId){
+                             @RequestParam("username") String username){
 
         if(bindingResult.hasErrors()){
             return "admin/admin-task-form";
         }
 
-        adminService.updateTask(task.getId(), task, userId);
+        adminService.updateTask(task.getId(), task, username);
         return "redirect:/admin/tasks";
     }
 

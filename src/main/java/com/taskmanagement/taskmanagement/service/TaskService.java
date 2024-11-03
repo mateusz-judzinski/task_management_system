@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface TaskService {
 
-    void createTask(Task task, int userId);
+    void createTask(Task task, String username);
     List<Task> getTasksForUser(int userId);
     void updateTask(int taskId, Task updatedTask);
-    void updateTask(int taskId, Task updatedTask, int userId);
+    void updateTask(int taskId, Task updatedTask, String username);
     void deleteTask(int taskId);
     Task findTaskById(int taskId);
     boolean isTaskOwner(int taskId, Principal principal);

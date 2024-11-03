@@ -16,7 +16,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Priority</th>
-                <th>User ID</th>
+                <th>Username</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -26,7 +26,7 @@
                 <td th:text="${task.title}"></td>
                 <td th:text="${task.description}"></td>
                 <td th:text="${task.priority}"></td>
-                <td th:text="${task.user.id}"></td>
+                <td th:text="${task.user.username}"></td>
                 <td>
                     <a th:href="@{/admin/task/edit/{id}(id=${task.id})}" class="btn btn-sm btn-warning">Edit</a>
                     <a th:href="@{/admin/task/delete/{id}(id=${task.id})}" class="btn btn-sm btn-danger ml-2">Delete</a>

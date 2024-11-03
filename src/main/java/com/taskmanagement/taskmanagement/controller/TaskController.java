@@ -55,10 +55,8 @@ public class TaskController {
         }
 
         String tempUsername = principal.getName();
-        User tempUser = userService.findUserByUsername(tempUsername);
-        int tempId = tempUser.getId();
 
-        taskService.createTask(task, tempId);
+        taskService.createTask(task, tempUsername);
 
         return "redirect:/tasks";
     }

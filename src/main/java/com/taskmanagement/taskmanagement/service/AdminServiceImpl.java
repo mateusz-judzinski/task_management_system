@@ -35,13 +35,13 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void addTask(Task task, int userId) {
-        taskService.createTask(task, userId);
+    public void addTask(Task task, String username) {
+        taskService.createTask(task, username);
     }
 
     @Override
-    public void updateTask(int taskId, Task updatedTask, int userId) {
-        taskService.updateTask(taskId, updatedTask, userId);
+    public void updateTask(int taskId, Task updatedTask, String username) {
+        taskService.updateTask(taskId, updatedTask, username);
     }
 
     @Override
