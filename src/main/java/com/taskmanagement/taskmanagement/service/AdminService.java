@@ -22,6 +22,7 @@ public interface AdminService {
     List<User> getAllUsers();
 
     List<Task> getAllTasks();
+    User findUserByUsername(String username);
 
     Task findTaskById(int id);
     User findUserById(int id);

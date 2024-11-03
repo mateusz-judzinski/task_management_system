@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +47,15 @@ public class AdminController {
 
     @PostMapping("/user")
     public String saveNewUser(@ModelAttribute("user") @Valid User user,
-                              BindingResult bindingResult){
+                              BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors()){
             return "admin/admin-new-user-form";
+        }
+
+        if(adminService.findUserByUsername(user.getUsername()) != null) {
+            redirectAttributes.addFlashAttribute("error", "User already exists");
+            return "redirect:/admin/user/new";
         }
 
         adminService.addUser(user);
