@@ -102,8 +102,8 @@ public class AdminController {
 
     @PostMapping("/task")
     public String saveNewTask(@ModelAttribute("task") @Valid Task task,
-                              @RequestParam("userId") int userId,
-                              BindingResult bindingResult){
+                              BindingResult bindingResult,
+                              @RequestParam("userId") int userId){
 
         if(bindingResult.hasErrors()){
             return "admin/admin-task-form";
@@ -121,8 +121,8 @@ public class AdminController {
 
     @PostMapping("/task/update")
     public String updateTask(@ModelAttribute("task") @Valid Task task,
-                             @RequestParam("userId") int userId,
-                             BindingResult bindingResult){
+                             BindingResult bindingResult,
+                             @RequestParam("userId") int userId){
 
         if(bindingResult.hasErrors()){
             return "admin/admin-task-form";
