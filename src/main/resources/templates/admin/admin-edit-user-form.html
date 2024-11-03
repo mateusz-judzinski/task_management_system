@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
   <title>Edit User Form</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h2>Edit User</h2>
-<form action="/admin/user/update" th:action="@{/admin/user/update}" th:object="${user}" method="post">
-  <input type="hidden" id="id" th:field="*{id}" required/>
-  <input type="hidden" id="password" th:field="*{password}" required/>
-  <div>
-    <label for="username">Name:</label>
-    <input type="text" id="username" th:field="*{username}" required/>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Edit User</h2>
+          <form action="/admin/user/update" th:action="@{/admin/user/update}" th:object="${user}" method="post">
+            <input type="hidden" id="id" th:field="*{id}" required/>
+            <input type="hidden" id="password" th:field="*{password}" required/>
+            <input type="hidden" id="role" th:field="*{role}" required/>
+
+            <div class="form-group">
+              <label for="username">Name:</label>
+              <input type="text" id="username" th:field="*{username}" class="form-control" required/>
+              <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger mt-1"></p>
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Password:</label>
+              <input type="password" id="newPassword" th:field="*{newPassword}" class="form-control" placeholder="Leave blank to keep current password"/>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="text" id="email" th:field="*{email}" class="form-control" required/>
+              <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger mt-1"></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" th:text="${user.id == 0 ? 'Add' : 'Update'}"></button>
+          </form>
+          <a href="/admin/users" class="btn btn-link btn-block mt-3">Back to User List</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="newPassword">Password:</label>
-    <input type="password" id="newPassword" th:field="*{newPassword}" placeholder="Leave blank to keep current password"/>
-  </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" th:field="*{email}" required/>
-  </div>
-  <div>
-    <label for="role">Role:</label>
-    <input type="text" id="role" th:field="*{role}" required/>
-  </div>
-  <button type="submit" th:text="${user.id == 0 ? 'Add' : 'Update'}"></button>
-</form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
