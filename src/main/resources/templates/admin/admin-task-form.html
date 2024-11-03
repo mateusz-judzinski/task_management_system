@@ -34,7 +34,7 @@
                             <p th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}" class="text-danger mt-1"></p>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" th:if="${task.id == 0}">
                             <label for="username">Username:</label>
                             <select id="username" name="username" class="form-control" required>
                                 <option value="">Select a username</option>
@@ -44,6 +44,15 @@
                             </select>
                         </div>
 
+                        <div class="form-group" th:if="${task.id != 0}">
+                            <label for="username">Username:</label>
+                            <select id="username" name="username" class="form-control" required>
+                                <th:block th:each="user : ${users}">
+                                    <option th:value="${user}" th:text="${user}"
+                                            th:selected="${user == task.user.username}"></option>
+                                </th:block>
+                            </select>
+                        </div>
 
                         <button type="submit" class="btn btn-primary btn-block" th:text="${task.id == 0 ? 'Add' : 'Update'}"></button>
                     </form>
