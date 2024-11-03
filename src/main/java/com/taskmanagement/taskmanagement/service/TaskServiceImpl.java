@@ -25,10 +25,9 @@ public class TaskServiceImpl implements TaskService{
 
     @Transactional
     @Override
-    public void createTask(Task task, int userId) {
+    public void createTask(Task task, String username) {
 
-        User tempUser = userRepository.findById(userId).orElseThrow(() ->
-                new RuntimeException("User with id: " + userId + " not found"));
+        User tempUser = userRepository.findByUsername(username);
 
         tempUser.add(task);
 
@@ -58,7 +57,7 @@ public class TaskServiceImpl implements TaskService{
 
     @Transactional
     @Override
-    public void updateTask(int taskId, Task updatedTask, int userId) {
+    public void updateTask(int taskId, Task updatedTask, String username) {
 
         Task tempTask = taskRepository.findById(taskId).orElseThrow(() ->
                 new RuntimeException("Task with id: " + taskId + " not found"));
@@ -67,8 +66,7 @@ public class TaskServiceImpl implements TaskService{
         tempTask.setDescription(updatedTask.getDescription());
         tempTask.setPriority(updatedTask.getPriority());
 
-        User tempUser = userRepository.findById(userId).orElseThrow(() ->
-                new RuntimeException("User with id: " + userId + " not found"));
+        User tempUser = userRepository.findByUsername(username);
         tempTask.setUser(tempUser);
 
         taskRepository.save(tempTask);
