@@ -31,6 +31,7 @@
                         <button type="submit" class="btn btn-primary btn-block" th:text="${user.id == 0 ? 'Add' : 'Update'}"></button>
                     </form>
                     <a href="/admin/users" class="btn btn-link btn-block mt-3">Back to User List</a>
+                    <p th:if="${error}" th:text="${error}" class="text-danger text-center mt-3"></p>
                 </div>
             </div>
         </div>
