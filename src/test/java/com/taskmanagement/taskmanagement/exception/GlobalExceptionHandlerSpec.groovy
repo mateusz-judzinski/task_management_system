@@ -1,5 +1,7 @@
 package com.taskmanagement.taskmanagement.exception
 
-class GlobalExceptionHandlerSpec {
+import spock.lang.Specification
+
+class GlobalExceptionHandlerSpec extends Specification{
 
 }

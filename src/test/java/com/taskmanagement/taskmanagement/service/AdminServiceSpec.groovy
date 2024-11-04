@@ -1,4 +1,6 @@
 package com.taskmanagement.taskmanagement.service
 
-class AdminServiceSpec {
+import spock.lang.Specification
+
+class AdminServiceSpec extends Specification{
 }

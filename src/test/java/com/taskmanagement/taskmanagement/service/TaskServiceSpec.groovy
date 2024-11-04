@@ -1,4 +1,6 @@
 package com.taskmanagement.taskmanagement.service
 
-class TaskServiceSpec {
+import spock.lang.Specification
+
+class TaskServiceSpec extends Specification{
 }

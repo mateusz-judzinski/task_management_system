@@ -1,5 +1,7 @@
 package com.taskmanagement.taskmanagement.repository
 
-class TaskRepositorySpec {
+import spock.lang.Specification
+
+class TaskRepositorySpec extends Specification{
 
 }

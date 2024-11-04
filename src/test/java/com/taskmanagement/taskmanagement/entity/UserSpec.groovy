@@ -1,5 +1,7 @@
 package com.taskmanagement.taskmanagement.entity
 
-class UserSpec {
+import spock.lang.Specification
+
+class UserSpec extends Specification{
 
 }

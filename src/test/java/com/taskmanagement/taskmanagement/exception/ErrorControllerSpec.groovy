@@ -1,5 +1,7 @@
 package com.taskmanagement.taskmanagement.exception
 
-class ErrorControllerSpec {
+import spock.lang.Specification
+
+class ErrorControllerSpec extends Specification{
 
 }

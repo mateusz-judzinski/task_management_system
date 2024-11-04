@@ -1,4 +1,6 @@
 package com.taskmanagement.taskmanagement.security
 
-class SecurityConfigSpec {
+import spock.lang.Specification
+
+class SecurityConfigSpec extends Specification{
 }

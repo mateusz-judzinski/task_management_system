@@ -1,5 +1,7 @@
 package com.taskmanagement.taskmanagement.controller
 
-class UserControllerSpec {
+import spock.lang.Specification
+
+class UserControllerSpec extends Specification{
 
 }

@@ -1,5 +1,7 @@
 package com.taskmanagement.taskmanagement.entity
 
-class TaskSpec {
+import spock.lang.Specification
+
+class TaskSpec extends Specification{
 
 }
