@@ -11,7 +11,7 @@
     - **Administrator Role**
 - **Database Management**
 - **Security Features**
-etc.
+- etc.
 
 ## Technologies
 
@@ -22,7 +22,7 @@ etc.
 - **MySQL**
 - **Spring Security**
 - **Spock Tests**
-etc.
+- etc.
 
 ## How to Run
 
