@@ -44,5 +44,5 @@ etc.
 
 5. **Login Details**:
     - Database query contains already two accounts:
-    login: admin pass: admin
-    login: matt pass: test
+    login: admin | pass: admin
+    login: matt  | pass: test
