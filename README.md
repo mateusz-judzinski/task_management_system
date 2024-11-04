@@ -43,6 +43,6 @@ etc.
     - This will take you to the **home page** of the application. From there, you can log in or register as a new user to start managing tasks.
 
 5. **Login Details**:
-    - Database query contains already two accounts:
+    - Database query contains already two sample accounts:
     login: admin | pass: admin
     login: matt  | pass: test
