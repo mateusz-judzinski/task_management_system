@@ -24,7 +24,8 @@ CREATE TABLE users (
 
 INSERT INTO `users` (username, password, email, role) 
 VALUES 
-('matt', '$2a$10$BpWABldCaTIE3FcpqCzVxOAk.915XZnT485DXQfbgiOzI61HVZMi6', 'matt@gmail.com', 'ROLE_USER');
+('matt', '$2a$10$BpWABldCaTIE3FcpqCzVxOAk.915XZnT485DXQfbgiOzI61HVZMi6', 'matt@gmail.com', 'ROLE_USER'),
+('admin', '$2a$10$Lmo6DDOSPezP2e0BV0KK8ebD.Z2qzjRy8gvIizW5G/CsWZz253fIS', 'admin@gmail.com', 'ROLE_ADMIN');
 
 CREATE TABLE tasks (
   `id` int NOT NULL AUTO_INCREMENT,
