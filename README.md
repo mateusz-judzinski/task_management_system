@@ -11,7 +11,7 @@
     - **Administrator Role**
 - **Database Management**
 - **Security Features**
-etc.
+- etc.
 
 ## Technologies
 
@@ -21,7 +21,8 @@ etc.
 - **Spring Data JPA**
 - **MySQL**
 - **Spring Security**
-etc.
+- **Spock Tests**
+- etc.
 
 ## How to Run
 
@@ -44,5 +45,7 @@ etc.
 
 5. **Login Details**:
     - Database query contains already two sample accounts:
-    login: admin | pass: admin
-    login: matt  | pass: test
+      ```
+      login: admin   | pass: admin
+      login: matt    | pass: test
+      ```
