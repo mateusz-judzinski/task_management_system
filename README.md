@@ -21,6 +21,7 @@ etc.
 - **Spring Data JPA**
 - **MySQL**
 - **Spring Security**
+- **Spock Tests**
 etc.
 
 ## How to Run
