@@ -4,14 +4,18 @@ import com.taskmanagement.taskmanagement.entity.Task
 import com.taskmanagement.taskmanagement.entity.User
 import com.taskmanagement.taskmanagement.repository.TaskRepository
 import com.taskmanagement.taskmanagement.repository.UserRepository
-import org.mockito.Mock
 import spock.lang.Specification
 
-class TaskServiceSpec extends Specification{
+class TaskServiceSpec extends Specification {
 
-    TaskRepository taskRepository = (Mock)TaskRepository
-    UserRepository userRepository = (Mock)UserRepository
-    TaskServiceImpl taskService = new TaskServiceImpl(taskRepository, userRepository)
+    TaskRepository taskRepository = Mock(TaskRepository)
+    UserRepository userRepository = Mock(UserRepository)
+
+    TaskServiceImpl taskService
+
+    def setup() {
+        taskService = new TaskServiceImpl(taskRepository, userRepository)
+    }
 
     def "should create a task for the user"(){
         given: "a task and a user"
@@ -28,5 +32,4 @@ class TaskServiceSpec extends Specification{
         user.getTasks().contains(task)
         task.getUser() == user
     }
-
 }
