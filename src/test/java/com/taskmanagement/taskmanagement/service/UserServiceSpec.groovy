@@ -60,7 +60,7 @@ class UserServiceSpec extends Specification{
     }
 
     def "should return all user"() {
-        given: "list of users"
+        given: "repository with multiple users"
         def users = [
                 new User(username: "user1", email: "user1@gmail.com"),
                 new User(username: "user2", email: "user2@gmail.com")
