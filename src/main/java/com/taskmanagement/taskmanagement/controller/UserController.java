@@ -66,10 +66,8 @@ public class UserController {
 
     @PostMapping("/process-login")
     public String loginUser(@RequestParam String username,
-                            @RequestParam String password,
-                            RedirectAttributes redirectAttributes) {
+                            @RequestParam String password) {
         if (userService.login(username, password)) {
-            redirectAttributes.addFlashAttribute("success", "Logged in successfully");
             return "redirect:/tasks";
         } else {
             return "user/login";
