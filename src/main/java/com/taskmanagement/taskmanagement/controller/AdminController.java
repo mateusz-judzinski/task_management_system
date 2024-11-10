@@ -27,7 +27,7 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String showAdminLoginForm(){
+    public String showAdminHomePage(){
         return "admin/admin";
     }
 
