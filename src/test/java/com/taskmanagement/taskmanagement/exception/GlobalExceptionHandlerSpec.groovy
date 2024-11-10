@@ -4,4 +4,5 @@ import spock.lang.Specification
 
 class GlobalExceptionHandlerSpec extends Specification{
 
+
 }

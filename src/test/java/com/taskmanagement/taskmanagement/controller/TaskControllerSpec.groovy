@@ -4,6 +4,7 @@ import com.taskmanagement.taskmanagement.entity.Task
 import com.taskmanagement.taskmanagement.entity.User
 import com.taskmanagement.taskmanagement.service.TaskService
 import com.taskmanagement.taskmanagement.service.UserService
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
+@WebMvcTest(TaskController)
 class TaskControllerSpec extends Specification{
 
     MockMvc mockMvc
