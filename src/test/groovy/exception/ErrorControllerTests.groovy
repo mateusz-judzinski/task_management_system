@@ -1,6 +1,7 @@
-package com.taskmanagement.taskmanagement.exception
+package exception
 
 import com.taskmanagement.taskmanagement.controller.TaskController
+import com.taskmanagement.taskmanagement.exception.ErrorController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
@@ -11,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 
 @WebMvcTest(ErrorController)
-class ErrorControllerSpec extends Specification {
+class ErrorControllerTests extends Specification {
 
     MockMvc mockMvc
 

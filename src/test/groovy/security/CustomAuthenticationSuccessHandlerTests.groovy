@@ -1,4 +1,4 @@
-package com.taskmanagement.taskmanagement.security
+package security
 
 import com.taskmanagement.taskmanagement.security.CustomAuthenticationSuccessHandler
 import spock.lang.Specification
@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
-class CustomAuthenticationSuccessHandlerSpec extends Specification {
+class CustomAuthenticationSuccessHandlerTests extends Specification {
 
     def "onAuthenticationSuccess should redirect to /tasks for ROLE_USER"() {
         given: "CustomAuthenticationSuccessHandler, mock request, response, and authentication with USER role"

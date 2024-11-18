@@ -1,6 +1,7 @@
-package com.taskmanagement.taskmanagement.exception
+package exception
 
 import com.taskmanagement.taskmanagement.controller.AdminController
+import com.taskmanagement.taskmanagement.exception.GlobalExceptionHandler
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.annotation.Import
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 
 @WebMvcTest(GlobalExceptionHandler)
-class GlobalExceptionHandlerSpec extends Specification {
+class GlobalExceptionHandlerTests extends Specification {
 
     MockMvc mockMvc
 

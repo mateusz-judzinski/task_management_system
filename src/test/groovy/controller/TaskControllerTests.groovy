@@ -1,5 +1,6 @@
-package com.taskmanagement.taskmanagement.controller
+package controller
 
+import com.taskmanagement.taskmanagement.controller.TaskController
 import com.taskmanagement.taskmanagement.entity.Task
 import com.taskmanagement.taskmanagement.entity.User
 import com.taskmanagement.taskmanagement.service.TaskService
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(TaskController)
-class TaskControllerSpec extends Specification{
+class TaskControllerTests extends Specification{
 
     MockMvc mockMvc
     TaskService taskService = Mock(TaskService)
