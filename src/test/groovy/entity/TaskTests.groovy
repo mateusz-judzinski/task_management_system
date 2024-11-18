@@ -1,11 +1,12 @@
-package com.taskmanagement.taskmanagement.entity
+package entity
 
+import com.taskmanagement.taskmanagement.entity.Task
 import jakarta.validation.Validation
 import jakarta.validation.Validator
 import jakarta.validation.ValidatorFactory
 import spock.lang.Specification
 
-class TaskSpec extends Specification{
+class TaskTests extends Specification{
 
     Validator validator
 

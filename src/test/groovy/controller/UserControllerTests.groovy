@@ -1,4 +1,4 @@
-package com.taskmanagement.taskmanagement.controller
+package controller
 
 import com.taskmanagement.taskmanagement.controller.UserController
 import com.taskmanagement.taskmanagement.entity.User
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 
 @WebMvcTest(UserController)
-class UserControllerSpec extends Specification {
+class UserControllerTests extends Specification {
 
     MockMvc mockMvc
     UserService userService = Mock(UserService)

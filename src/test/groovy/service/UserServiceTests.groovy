@@ -1,12 +1,13 @@
-package com.taskmanagement.taskmanagement.service
+package service
 
 import com.taskmanagement.taskmanagement.entity.User
 import com.taskmanagement.taskmanagement.repository.UserRepository
+import com.taskmanagement.taskmanagement.service.UserServiceImpl
 import org.mockito.Mock
 import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 
-class UserServiceSpec extends Specification{
+class UserServiceTests extends Specification{
 
     UserRepository userRepository = Mock(UserRepository)
     PasswordEncoder passwordEncoder = Mock(PasswordEncoder)

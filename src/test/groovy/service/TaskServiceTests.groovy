@@ -1,15 +1,16 @@
-package com.taskmanagement.taskmanagement.service
+package service
 
 import com.taskmanagement.taskmanagement.entity.Task
 import com.taskmanagement.taskmanagement.entity.User
 import com.taskmanagement.taskmanagement.repository.TaskRepository
 import com.taskmanagement.taskmanagement.repository.UserRepository
+import com.taskmanagement.taskmanagement.service.TaskServiceImpl
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import spock.lang.Specification
 
 import java.security.Principal
 
-class TaskServiceSpec extends Specification {
+class TaskServiceTests extends Specification {
 
     TaskRepository taskRepository = Mock(TaskRepository)
     UserRepository userRepository = Mock(UserRepository)

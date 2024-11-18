@@ -1,13 +1,16 @@
-package com.taskmanagement.taskmanagement.controller
+package controller
 
+import com.taskmanagement.taskmanagement.controller.AdminController
 import com.taskmanagement.taskmanagement.entity.Task
 import com.taskmanagement.taskmanagement.entity.User
 import com.taskmanagement.taskmanagement.service.AdminService
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
+import org.junit.jupiter.api.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash
@@ -18,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(AdminController)
-class AdminControllerSpec extends Specification{
+class AdminControllerTests extends Specification{
 
     MockMvc mockMvc
     AdminService adminService = Mock(AdminService)

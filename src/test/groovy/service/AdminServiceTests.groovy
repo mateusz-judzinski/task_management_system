@@ -1,10 +1,13 @@
-package com.taskmanagement.taskmanagement.service
+package service
 
 import com.taskmanagement.taskmanagement.entity.Task
 import com.taskmanagement.taskmanagement.entity.User
+import com.taskmanagement.taskmanagement.service.AdminServiceImpl
+import com.taskmanagement.taskmanagement.service.TaskService
+import com.taskmanagement.taskmanagement.service.UserService
 import spock.lang.Specification
 
-class AdminServiceSpec extends Specification{
+class AdminServiceTests extends Specification{
 
     UserService userService = Mock(UserService)
     TaskService taskService = Mock(TaskService)

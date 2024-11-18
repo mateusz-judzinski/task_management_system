@@ -1,4 +1,4 @@
-package com.taskmanagement.taskmanagement.security
+package security
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 
 @SpringBootTest
-class PasswordEncoderConfigSpec extends Specification{
+class PasswordEncoderConfigTests extends Specification{
 
     PasswordEncoder passwordEncoder
 
